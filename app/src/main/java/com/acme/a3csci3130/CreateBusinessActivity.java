@@ -6,50 +6,42 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class DetailViewActivity extends Activity {
+public class CreateBusinessActivity extends Activity {
 
+    private Button submitButton;
     private EditText nameField, primaryField, numberField, addressField, ptField;
-    Business receivedBusinessInfo;
     private MyApplicationData appState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_view);
-        receivedBusinessInfo = (Business)getIntent().getSerializableExtra("Business");
+        setContentView(R.layout.activity_create_business_activity);
+        //Get the app wide shared variables
         appState = ((MyApplicationData) getApplicationContext());
 
         //Creating local references to the interface elements
+        submitButton = (Button) findViewById(R.id.submitButton);
         nameField = (EditText) findViewById(R.id.name);
         primaryField = (EditText) findViewById(R.id.primaryBusiness);
         numberField = (EditText) findViewById(R.id.businessNumber);
         addressField = (EditText) findViewById(R.id.address);
         ptField = (EditText) findViewById(R.id.provinceTerritory);
-
-        if(receivedBusinessInfo != null){
-            nameField.setText(receivedBusinessInfo.name);
-            primaryField.setText(receivedBusinessInfo.primary_Business);
-            numberField.setText(receivedBusinessInfo.business_Number);
-            addressField.setText(receivedBusinessInfo.address);
-            ptField.setText(receivedBusinessInfo.province_Territory);
-        }
     }
 
-    public void updateBusiness(View v){
+    public void submitInfoButton(View v) {
+        //each entry needs a unique ID
+
+        String db_ID = appState.firebaseReference.push().getKey();
+
         String name = nameField.getText().toString();
         String primary_Business = primaryField.getText().toString();
         String business_Number = numberField.getText().toString();
         String address = addressField.getText().toString();
         String province_Territory = ptField.getText().toString();
-        Business updatedBusiness = new Business(receivedBusinessInfo.db_ID, business_Number, name, primary_Business, address, province_Territory);
+        Business created_Business = new Business(db_ID, business_Number, name, primary_Business, address, province_Territory);
 
-        appState.firebaseReference.child(updatedBusiness.db_ID).setValue(updatedBusiness);
-        receivedBusinessInfo = updatedBusiness;
-    }
+        appState.firebaseReference.child(db_ID).setValue(created_Business);
 
-    public void eraseBusiness(View v)
-    {
-        appState.firebaseReference.child(receivedBusinessInfo.db_ID).removeValue();
         finish();
     }
 }
