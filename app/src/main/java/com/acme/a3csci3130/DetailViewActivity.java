@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 public class DetailViewActivity extends Activity {
 
@@ -43,7 +47,20 @@ public class DetailViewActivity extends Activity {
         String province_Territory = ptField.getText().toString();
         Business updatedBusiness = new Business(receivedBusinessInfo.db_ID, business_Number, name, primary_Business, address, province_Territory);
 
-        appState.firebaseReference.child(updatedBusiness.db_ID).setValue(updatedBusiness);
+        appState.firebaseReference.child(updatedBusiness.db_ID).setValue(updatedBusiness, new DatabaseReference.CompletionListener() {
+            /**
+             * Handles the return of the database operation
+             * @param databaseError The error, if there is one
+             * @param databaseReference The relevant database entry
+             */
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError == null) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Inputted data doesn't pass validation.", Toast.LENGTH_SHORT);
+                }
+            }
+        });
+
         receivedBusinessInfo = updatedBusiness;
     }
 
