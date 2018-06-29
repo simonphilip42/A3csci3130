@@ -7,24 +7,24 @@
     tools:context="com.acme.a3csci3130.MainActivity">
 
     <Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/createButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:onClick="createBusinessButton"
         android:text="Create a Business"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/primaryBusiness" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/submitButton"
+        app:layout_constraintTop_toBottomOf="@+id/createButton"
         app:layout_constraintRight_toRightOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>

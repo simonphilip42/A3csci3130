@@ -16,6 +16,11 @@ public class DetailViewActivity extends Activity {
     Business receivedBusinessInfo;
     private MyApplicationData appState;
 
+    /**
+     * OnCreate, called anytime this activity is created. Performs setup for
+     * this activities lifecycle
+     * @param savedInstanceState Saved information about the activities instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +29,11 @@ public class DetailViewActivity extends Activity {
         appState = ((MyApplicationData) getApplicationContext());
 
         //Creating local references to the interface elements
-        nameField = (EditText) findViewById(R.id.name);
-        primaryField = (EditText) findViewById(R.id.primaryBusiness);
-        numberField = (EditText) findViewById(R.id.businessNumber);
-        addressField = (EditText) findViewById(R.id.address);
-        ptField = (EditText) findViewById(R.id.provinceTerritory);
+        nameField = (EditText) findViewById(R.id.nameUpdate);
+        primaryField = (EditText) findViewById(R.id.primaryBusinessUpdate);
+        numberField = (EditText) findViewById(R.id.businessNumberUpdate);
+        addressField = (EditText) findViewById(R.id.addressUpdate);
+        ptField = (EditText) findViewById(R.id.provinceTerritoryUpdate);
 
         if(receivedBusinessInfo != null){
             nameField.setText(receivedBusinessInfo.name);
@@ -39,6 +44,10 @@ public class DetailViewActivity extends Activity {
         }
     }
 
+    /**
+     * Updates a business stored on the external database
+     * @param v View, unused
+     */
     public void updateBusiness(View v){
         String name = nameField.getText().toString();
         String primary_Business = primaryField.getText().toString();
@@ -55,8 +64,11 @@ public class DetailViewActivity extends Activity {
              */
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if (databaseError == null) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Inputted data doesn't pass validation.", Toast.LENGTH_SHORT);
+                if (databaseError != null) {
+                    Toast.makeText(getApplicationContext(), "Inputted data doesn't pass validation.", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    finish();
                 }
             }
         });
@@ -64,6 +76,10 @@ public class DetailViewActivity extends Activity {
         receivedBusinessInfo = updatedBusiness;
     }
 
+    /**
+     * Deletes a business from the external database
+     * @param v The view, unused
+     */
     public void eraseBusiness(View v)
     {
         appState.firebaseReference.child(receivedBusinessInfo.db_ID).removeValue();

@@ -32,11 +32,11 @@ public class CreateBusinessActivity extends Activity {
 
         //Creating local references to the interface elements
         submitButton = (Button) findViewById(R.id.submitButton);
-        nameField = (EditText) findViewById(R.id.name);
-        primaryField = (EditText) findViewById(R.id.primaryBusiness);
-        numberField = (EditText) findViewById(R.id.businessNumber);
-        addressField = (EditText) findViewById(R.id.address);
-        ptField = (EditText) findViewById(R.id.provinceTerritory);
+        nameField = (EditText) findViewById(R.id.nameCreate);
+        primaryField = (EditText) findViewById(R.id.primaryBusinessCreate);
+        numberField = (EditText) findViewById(R.id.businessNumberCreate);
+        addressField = (EditText) findViewById(R.id.addressCreate);
+        ptField = (EditText) findViewById(R.id.provinceTerritoryCreate);
     }
 
     /**
@@ -63,11 +63,11 @@ public class CreateBusinessActivity extends Activity {
              */
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if(databaseError != null){
+                if(databaseError == null){
                     finish();
                 }
                 else{
-                    Toast toast = Toast.makeText(getApplicationContext(), "Inputted data doesn't pass validation.", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Inputted data doesn't pass validation.", Toast.LENGTH_LONG).show();
                 }
             }
         });
