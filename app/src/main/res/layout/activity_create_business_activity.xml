@@ -4,39 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.acme.a3csci3130.DetailViewActivity"
+    tools:context="com.acme.a3csci3130.CreateBusinessActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <Button
-        android:id="@+id/updateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="updateBusiness"
-        android:text="Update Data"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/provinceTerritoryUpdate"
-        tools:layout_conversion_absoluteHeight="72dp"
-        tools:layout_conversion_absoluteWidth="70dp" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="eraseBusiness"
-        android:text="Erase Contact"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/provinceTerritoryUpdate"
-        tools:layout_conversion_absoluteHeight="55dp"
-        tools:layout_conversion_absoluteWidth="134dp" />
-
     <EditText
-        android:id="@+id/nameUpdate"
+        android:id="@+id/nameCreate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -50,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/businessNumberUpdate"
+        android:id="@+id/businessNumberCreate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -62,12 +34,11 @@
         android:hint="Business Number"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/nameCreate" />
 
     <EditText
-        android:id="@+id/provinceTerritoryUpdate"
+        android:id="@+id/primaryBusinessCreate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -75,15 +46,13 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Province or Territory (Optional)"
-        android:inputType="textPersonName"
+        android:hint="Field of Industry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addressUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/businessNumberCreate" />
 
     <EditText
-        android:id="@+id/addressUpdate"
+        android:id="@+id/addressCreate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -96,10 +65,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/primaryBusinessUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/primaryBusinessCreate" />
 
     <EditText
-        android:id="@+id/primaryBusinessUpdate"
+        android:id="@+id/provinceTerritoryCreate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -107,10 +76,27 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:hint="Field of Industry"
+        android:ems="10"
+        android:hint="Province or Territory (Optional)"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/businessNumberUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/addressCreate" />
 
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:onClick="submitInfoButton"
+        android:text="Create Business"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/provinceTerritoryCreate" />
 
 </android.support.constraint.ConstraintLayout>
